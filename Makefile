@@ -16,11 +16,11 @@ include $(INCLUDE_DIR)/cmake.mk
 
 define Package/$(PKG_NAME)
   SECTION:=base
-  CATEGORY:=Utilities-666
+  CATEGORY:=Utilities-demo_test
   TITLE:= Smart gateway demo application
-  URL:=http://www.upointech.com/
+  URL:=http://www.hanzhihong.cn/
   MAINTAINER:=Utilities
-  #DEPENDS:=glib2 libcapi libubox
+  DEPENDS:=+libstdc +libstdc++
 endef
 
 define Package/$(PKG_NAME)/description
@@ -40,6 +40,11 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/bin
+	#编译附加文件
+	$(CP) $(STAGING_DIR_HOST)/lib/libstdc++.so.6 $(1)/bin
+	$(CP) $(STAGING_DIR_HOST)/lib/libc.so.6 $(1)/bin
+	$(CP) $(STAGING_DIR_HOST)/lib/libm.so.6 $(1)/bin
+	#编译打包
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
 endef
 
