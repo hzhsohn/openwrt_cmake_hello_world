@@ -20,7 +20,7 @@ define Package/$(PKG_NAME)
   TITLE:= Smart gateway demo application
   URL:=http://www.hanzhihong.cn/
   MAINTAINER:=Utilities
-  DEPENDS:=+libstdc +libstdc++
+  DEPENDS:+=libstdcpp
 endef
 
 define Package/$(PKG_NAME)/description
@@ -40,7 +40,6 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
 	#编译附加文件
 	#$(CP) $(STAGING_DIR_HOST)/lib/libstdc++.so.6 $(1)/bin
 	#$(CP) $(STAGING_DIR_HOST)/lib/libc.so.6 $(1)/bin
@@ -49,6 +48,8 @@ define Package/$(PKG_NAME)/install
    	$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libstdc++.so.6 $(1)/usr/lib/libstdc++.so.6
     	$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libm.so $(1)/usr/lib/libm.so.6
     	$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libc.so $(1)/usr/lib/libc.so.6
+	#
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
 endef
 
 #define Package/$(PKG_NAME)/extra_provides
