@@ -16,15 +16,15 @@ include $(INCLUDE_DIR)/cmake.mk
 
 define Package/$(PKG_NAME)
   SECTION:=base
-  CATEGORY:=Utilities-demo_test
-  TITLE:= Smart gateway demo application
-  URL:=http://www.hanzhihong.cn/
-  MAINTAINER:=Utilities
+  CATEGORY:=Utilities
+  TITLE:= Smart gateway application
+  URL:=http://xmap.hx-kong.com/
+  MAINTAINER:=hx-kong
   DEPENDS:=+libstdcpp
 endef
 
 define Package/$(PKG_NAME)/description
-  Demo Application for smart gateway device
+   Application for smart gateway device
 endef
 
 
@@ -40,15 +40,25 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/bin
-	#编译附加文件
+
+	#C++编译附加文件,SDK编译时用
 	#$(CP) $(STAGING_DIR_HOST)/lib/libstdc++.so.6 $(1)/bin
 	#$(CP) $(STAGING_DIR_HOST)/lib/libc.so.6 $(1)/bin
 	#$(CP) $(STAGING_DIR_HOST)/lib/libm.so.6 $(1)/bin
-   	$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libstdc++.so.6 $(1)/usr/lib/libstdc++.so.6
-    	$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libm.so $(1)/usr/lib/libm.so.6
-    	$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libc.so $(1)/usr/lib/libc.so.6
+	
+	#C++编译附加文件,源码编译时用
+    #$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libstdc++.so.6 $(1)/usr/lib/libstdc++.so.6
+    #$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libm.so $(1)/usr/lib/libm.so.6
+    #$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libc.so $(1)/usr/lib/libc.so.6
 	#
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
 endef
+
+#无视C++编译成IPK的警告
+#define Package/$(PKG_NAME)/extra_provides
+#    echo 'libstdc++.so.6'; \
+#    echo 'libm.so.6'; \
+#    echo 'libc.so.6';
+#endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
