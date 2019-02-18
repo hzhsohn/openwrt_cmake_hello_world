@@ -18,8 +18,8 @@ define Package/$(PKG_NAME)
   SECTION:=base
   CATEGORY:=Utilities
   TITLE:= Smart gateway application
-  URL:=http://xmap.hx-kong.com/
-  MAINTAINER:=hx-kong
+  URL:=http://www.hx-kong.com/
+  MAINTAINER:=Utilities
   DEPENDS:=+libstdcpp
 endef
 
