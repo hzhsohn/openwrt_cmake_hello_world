@@ -40,7 +40,7 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/bin
-
+	#
 	#C++编译附加文件,SDK编译抽筋时用
 	#$(CP) $(STAGING_DIR_HOST)/lib/libstdc++.so.6 $(1)/bin
 	#$(CP) $(STAGING_DIR_HOST)/lib/libc.so.6 $(1)/bin
