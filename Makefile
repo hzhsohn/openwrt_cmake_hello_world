@@ -45,7 +45,7 @@ define Package/$(PKG_NAME)/install
 	#$(CP) $(STAGING_DIR_HOST)/lib/libstdc++.so.6 $(1)/bin
 	#$(CP) $(STAGING_DIR_HOST)/lib/libc.so.6 $(1)/bin
 	#$(CP) $(STAGING_DIR_HOST)/lib/libm.so.6 $(1)/bin
-	
+	#
 	#C++编译附加文件,源码编译抽筋时用
     	#$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libstdc++.so.6 $(1)/usr/lib/libstdc++.so.6
     	#$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libm.so $(1)/usr/lib/libm.so.6
