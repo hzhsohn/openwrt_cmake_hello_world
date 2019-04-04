@@ -20,7 +20,8 @@ define Package/$(PKG_NAME)
   TITLE:= Smart gateway application
   URL:=http://www.hx-kong.com/
   MAINTAINER:=Utilities
-  DEPENDS:=+libstdcpp
+  DEPENDS:=+libstdcpp +libpthread
+  TARGET_LDFLAGS+=-lpthread
 endef
 
 define Package/$(PKG_NAME)/description
