@@ -21,7 +21,7 @@ define Package/$(PKG_NAME)
   URL:=http://www.hx-kong.com/
   MAINTAINER:=Utilities
   DEPENDS:=+libstdcpp +libpthread
-  TARGET_LDFLAGS+=-lpthread
+  TARGET_LDFLAGS:= -lpthread
 endef
 
 define Package/$(PKG_NAME)/description
