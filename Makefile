@@ -56,14 +56,14 @@ define Package/$(PKG_NAME)/install
 	
 	#执行指令,装配配置文件,和开机启动
 	$(INSTALL_DIR) $(1)/etc
-	mkdir -p $(1)/etc/xmap
+	mkdir -p $(1)/etc/hello_world
 	mkdir -p $(1)/etc/init.d
 	mkdir -p $(1)/etc/rc.d
-	$(CP) ./xmap.config $(1)/etc/xmap/xmap.config
-	$(CP) ./init.d-xmap $(1)/etc/init.d/
-	mv $(1)/etc/init.d/init.d-xmap $(1)/etc/init.d/xmap 
-	chmod 0755 $(1)/etc/init.d/xmap
-	ln -s /etc/init.d/xmap $(1)/etc/rc.d/S80xmap
+	$(CP) ./hello_world.config $(1)/etc/hello_world/
+	$(CP) ./init.d-hello_world $(1)/etc/init.d/
+	mv $(1)/etc/init.d/init.d-hello_world $(1)/etc/init.d/hello_world 
+	chmod 0755 $(1)/etc/init.d/hello_world
+	ln -s /etc/init.d/hello_world $(1)/etc/rc.d/S80hello_world
 endef
 
 #无视C++编译成IPK的警告,编译抽筋时用

@@ -1,0 +1,28 @@
+#!/bin/sh /etc/rc.common
+# Basic init script
+# April 2012, OpenWrt.org
+# Provides support for the luci-app package, if installed
+
+START=80
+APP=`which hello_world`
+USE_UCI_CONFIG=$(uci -q get hello_world.owrt.use_uci)
+if [ $? -eq 1 ]; then
+    USE_UCI_CONFIG=0
+fi
+
+SERVICE_DAEMONIZE=1
+SERVICE_WRITE_PID=1
+
+start() {
+        if [ "$USE_UCI_CONFIG" -eq 1 ]; then
+            CONF=/tmp/hello_world.converted.$$.conf
+            hello_world.uci.convert -f $CONF
+        else
+            CONF=/etc/hello_world/hello_world.config
+        fi
+        service_start $APP -conf $CONF
+}
+
+stop() {
+        service_stop $APP
+}
