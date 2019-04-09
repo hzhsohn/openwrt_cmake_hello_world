@@ -53,6 +53,17 @@ define Package/$(PKG_NAME)/install
     	#$(INSTALL_DATA) $(TOOLCHAIN_DIR)/lib/libc.so $(1)/usr/lib/libc.so.6
 	#
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
+	
+	#执行指令,装配配置文件,和开机启动
+	$(INSTALL_DIR) $(1)/etc
+	mkdir -p $(1)/etc/xmap
+	mkdir -p $(1)/etc/init.d
+	mkdir -p $(1)/etc/rc.d
+	$(CP) ./xmap.config $(1)/etc/xmap/xmap.config
+	$(CP) ./init.d-xmap $(1)/etc/init.d/
+	mv $(1)/etc/init.d/init.d-xmap $(1)/etc/init.d/xmap 
+	chmod 0755 $(1)/etc/init.d/xmap
+	ln -s /etc/init.d/xmap $(1)/etc/rc.d/S80xmap
 endef
 
 #无视C++编译成IPK的警告,编译抽筋时用
