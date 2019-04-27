@@ -60,8 +60,8 @@ define Package/$(PKG_NAME)/install
 	mkdir -p $(1)/etc/init.d
 	mkdir -p $(1)/etc/rc.d
 	$(CP) ./hello_world.config $(1)/etc/hello_world/
-	$(CP) ./init.d-hello_world $(1)/etc/init.d/
-	mv $(1)/etc/init.d/init.d-hello_world $(1)/etc/init.d/hello_world 
+	$(CP) ./init.d--hello_world $(1)/etc/init.d/
+	mv $(1)/etc/init.d/init.d--hello_world $(1)/etc/init.d/hello_world 
 	chmod 0755 $(1)/etc/init.d/hello_world
 	ln -s /etc/init.d/hello_world $(1)/etc/rc.d/S80hello_world
 endef
