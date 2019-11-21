@@ -1,8 +1,0 @@
-cmake_minimum_required(VERSION 2.6)
-PROJECT(hello_world)
-
-SET(SOURCES	hello_world.cpp)
-
-ADD_EXECUTABLE(${PROJECT_NAME} ${SOURCES})
-
-INSTALL(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)

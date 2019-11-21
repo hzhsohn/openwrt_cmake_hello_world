@@ -1,0 +1,4 @@
+
+config dtrs
+	option enabled '1'
+
