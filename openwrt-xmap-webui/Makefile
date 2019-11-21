@@ -6,7 +6,7 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=xmap-webui
+PKG_NAME:=xmap
 PKG_VERSION:=1
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_BASE_NAME)-$(PKG_VERSION)
@@ -17,7 +17,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/$(PKG_NAME)
   SECTION:=base
   CATEGORY:=hx-kong
-  TITLE:= xmap web ui
+  TITLE:= Smart gateway application
   URL:=http://xmap.hx-kong.com/
   MAINTAINER:=hx-kong
   DEPENDS:=+libstdcpp +libpthread
@@ -58,12 +58,17 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
 	
 	#执行指令,装配配置文件,和开机启动
-	mkdir -p $(1)/etc
-	$(CP) ./etc/* $(1)/etc	
-	chmod 0755 $(1)/etc/xmap/*
-		
+	mkdir -p $(1)/etc	
+	$(CP) ./etc/* $(1)/etc
+	chmod 0755 $(1)/etc/init.d/*
+	chmod 0755 $(1)/etc/xmap/*	
+	#生成启动文件
+	mkdir -p $(1)/etc/rc.d
+	ln -s /etc/init.d/xmap $(1)/etc/rc.d/S80xmap
+	
 	mkdir -p $(1)/usr
 	$(CP) ./usr/* $(1)/usr
+	
 endef
 
 #无视C++编译成IPK的警告,编译抽筋时用
