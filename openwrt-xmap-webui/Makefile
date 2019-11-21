@@ -32,8 +32,8 @@ endef
 define Build/Prepare
 	mkdir -p $(PKG_BUILD_DIR)
 	$(CP) ./src/* $(PKG_BUILD_DIR)
-	$(CP) ./etc/* $(PKG_BUILD_DIR)
-	$(CP) ./usr/* $(PKG_BUILD_DIR)
+	$(CP) ./etc $(PKG_BUILD_DIR)
+	$(CP) ./usr $(PKG_BUILD_DIR)
 endef
 
 
@@ -58,26 +58,12 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_NAME) $(1)/bin/$(PKG_NAME)
 	
 	#执行指令,装配配置文件,和开机启动
-	$(INSTALL_DIR) $(1)/etc
-	#mkdir -p $(1)/etc/config
-	#mkdir -p $(1)/etc/xmap	
-	$(CP) -r ./etc/* $(1)/etc	
+	mkdir -p $(1)/etc
+	$(CP) ./etc/* $(1)/etc	
 	chmod 0755 $(1)/etc/xmap/*
 		
-	$(INSTALL_DIR) $(1)/usr
-	mkdir -p $(1)/usr/lib
-	mkdir -p $(1)/usr/lib/lua
-	mkdir -p $(1)/usr/lib/lua/luci
-	mkdir -p $(1)/usr/lib/lua/luci/controller
-	
-	mkdir -p $(1)/usr/lib/lua/luci/model
-	mkdir -p $(1)/usr/lib/lua/luci/model/cbi
-	mkdir -p $(1)/usr/lib/lua/luci/model/cbi/admin_xmap
-	
-	$(CP) -r ./usr/* $(1)/usr
-	#$(CP) ./usr/lib/lua/luci/model/cbi/admin_xmap/luci-xmap.lua $(1)/usr/lib/lua/luci/model/cbi/admin_xmap/luci-xmap.lua
-	#$(CP) ./usr/lib/lua/luci/model/cbi/admin_xmap/luci-xmap-collect.lua $(1)/usr/lib/lua/luci/model/cbi/admin_xmap/luci-xmap-collect.lua
-	
+	mkdir -p $(1)/usr
+	$(CP) ./usr/* $(1)/usr
 endef
 
 #无视C++编译成IPK的警告,编译抽筋时用
