@@ -1,0 +1,19 @@
+#!/bin/sh /etc/rc.common
+# Basic init script for xmap-collect
+# Provides support for the luci-app-xmap package, if installed
+
+START=80
+APP=`which xmap-webui`
+
+
+SERVICE_DAEMONIZE=1
+SERVICE_WRITE_PID=1
+
+start() {
+        CONF=/etc/xmap/xmap-webui.config
+        service_start $APP -conf $CONF
+}
+
+stop() {
+        service_stop $APP
+}

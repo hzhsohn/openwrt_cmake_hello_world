@@ -6,7 +6,7 @@
 #
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=xmap
+PKG_NAME:=xmap-webui
 PKG_VERSION:=1
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_BASE_NAME)-$(PKG_VERSION)
@@ -64,7 +64,7 @@ define Package/$(PKG_NAME)/install
 	chmod 0755 $(1)/etc/xmap/*	
 	#生成启动文件
 	mkdir -p $(1)/etc/rc.d
-	ln -s /etc/init.d/xmap $(1)/etc/rc.d/S80xmap
+	ln -s /etc/init.d/xmap-webui $(1)/etc/rc.d/S80xmap-webui
 	
 	mkdir -p $(1)/usr
 	$(CP) ./usr/* $(1)/usr
